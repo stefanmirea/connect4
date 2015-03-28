@@ -1,0 +1,92 @@
+This was my third homework for an introductory C course in the 1st year.
+
+The third assignment of this course is by tradition to implement a TUI game
+using the curses library. This year the game was Connect4. My submission was
+selected for the Hall of Fame[1] and the grading assistant also created an
+additional Bonus column[2] in the results spreadsheet especially for my
+homework, stating that it was by far one of the most well made projects[3].
+
+Full statement:
+http://cs.curs.pub.ro/2012/mod/resource/view.php?id=3136
+(You might not have access to it as a guest.)
+
+Check out the repo wiki for some screenshots.
+
+Original README file:
+================================================================================
+Nume si prenume:      Mirea Stefan Gabriel
+Grupa:                311CC
+Tema:                 Tema 3, Programarea Calculatoarelor
+Tema proiectului:     Connect4
+Versiunea de compilator:            gcc version 4.4.5
+Dependente externe:                 libncurses5-dev
+
+===============================================================================
+A) Detalii de implementare, bonusuri implementate:
+
+Jocul este proiectat incat sa se incadreze intr-un terminal cu dimensiunile
+27x70, dar imaginea se va pozitiona automat in centru, la fiecare
+redimensionare.
+
+Pentru fiecare stare a jocului (meniu principal, ecran de optiuni, load game
+etc.) exista cate o functie care genereaza "pagina" respectiva. Animatiile sunt
+realizare prin adaugarea la fiecare dintre aceste functii a unui parametru
+care specifica "frame-ul" si in functie de el este determinata pozitia textelor
+care vor fi afisate. Pentru trecerea de la o pagina la alta, se folosesc
+functiile destroy respectiv create, unde sunt parcurse toate valorile
+corespunzatoare frame-urilor si, pentru fiecare astfel de valoare, este
+apelata functia de afisare a paginii corespunzatoare.
+
+Am implementat bonusul. In timpul unui joc de tip Pop out, trebuie apasata
+sageata in jos pentru a selecta ce piesa se scoate. De asemenea, in meniul
+principal exista optiuni pentru Highscores (care va afisa scorurile totale
+sortate) si Settings (de unde se pot modifica: viteza de cadere a pieselor,
+numele implicite ale jucatorilor si numele implicit al unui joc salvat).
+
+Legat de salvare: Folosirea optiunilor Quit sau Return dupa terminarea unei
+runde indica terminarea intregului joc (si adaugarea scorurilor temporare la
+cele totale), care, chiar daca fusese salvat, e automat sters. Pentru ca
+salvarea sa se pastreze (si scorurile temporare sa nu se adauge inca), trebuie
+inceputa o noua runda, pentru a demonstra ca jocul nu se opreste aici.
+Numele salvarilor nu este unic. Salvarile sunt identificare in mod unic de un
+Game ID (retinut in campul gid al inregistrarilor) care este invizibil
+utilizatorului. Atat in numele salvarilor, cat si in numele jucatorilor, pot
+aparea doar litere mici, cifre si underscores.
+
+Fisierele folosite de program sunt:
+start_image
+tool_image
+last_conf.ini
+settings.ini
+alltime.dat
+saved.dat
+
+Niciunul dintre acestea nu este neaparat necesar sa existe. In cazul in care
+unul dintre primele doua lipseste, imaginea corespunzatoare nu va fi afisata.
+In cazul ultimelor 4, vor fi create automat cele necesare.
+Comanda "make clean" nu va sterge decat fisierele executabile, obiecte sau zip.
+Pentru a sterge si ultimele 4 fisiere din lista de mai sus, se va folosi
+comanda "make cleanall".
+
+Pentru a testa aplicatia pentru cantitati mai mari de date, puteti folosi
+comanda:
+  make generate
+Aceasta va crea fisiere (pentru salvari, scoruri, configuratie) cu date
+aleatoare.
+Mentionez ca lista de prenume folosita de programul de generare este preluata
+de aici:
+http://ro.wikipedia.org/wiki/List%C4%83_de_prenume_rom%C3%A2ne%C8%99ti
+
+===============================================================================
+B) Feedback organizatoric pentru propunator:
+
+Timp aproximativ de rezolvare:      88 (in ore)
+Gradul de dificultate (1 = simplu)  5
+
+Sugestii, pareri, comentarii, propuneri:
+
+Tema a fost OK.
+
+[1] http://elf.cs.pub.ro/programare/Proiectul
+[2] http://cs.curs.pub.ro/2012/mod/forum/discuss.php?d=1913
+[3] https://docs.google.com/spreadsheets/d/1dcitGllIeQgWZbOW1jCcHjrieJqMKxJdfD3-nyf2r20/edit#gid=0
